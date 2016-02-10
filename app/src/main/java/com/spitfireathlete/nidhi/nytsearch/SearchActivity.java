@@ -30,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
     private GridView gvResults;
     private Button btnSearch;
     private List<Article> articles;
+    private ArticleArrayAdapter adapter;
 
     private static final String NYT_API_KEY = "14886966169991e54b1a4710491c9efc:4:74352748";
     private static final String NYT_SEARCH_URL = "http://api.nytimes.com/svc/search/v2/articlesearch.json";
@@ -45,6 +46,9 @@ public class SearchActivity extends AppCompatActivity {
         gvResults = (GridView) findViewById(R.id.gvResults);
         btnSearch = (Button) findViewById(R.id.btnSearch);
         this.articles = new ArrayList<Article>();
+
+        adapter = new ArticleArrayAdapter(this, this.articles);
+        gvResults.setAdapter(adapter);
 
     }
 
@@ -90,7 +94,7 @@ public class SearchActivity extends AppCompatActivity {
                 JSONArray articlesJSON = null;
                 try {
                     articlesJSON = response.getJSONObject("response").getJSONArray("docs");
-                    articles.addAll(Article.fromJSONArray(articlesJSON));
+                    adapter.addAll(Article.fromJSONArray(articlesJSON));
 
                     Log.d("DEBUG", articles.toString());
 
