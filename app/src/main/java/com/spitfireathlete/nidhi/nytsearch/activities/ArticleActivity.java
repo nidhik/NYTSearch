@@ -17,6 +17,7 @@ public class ArticleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_article);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Article a = (Article) getIntent().getSerializableExtra("article");

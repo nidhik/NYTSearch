@@ -85,11 +85,20 @@ public class SearchActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            showSettings();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void showSettings() {
+        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        SettingsFragment settings = new SettingsFragment();
+        settings.show(ft, "SETTINGS");
+
+    }
+
 
     public void handleSearchClicked(View view) {
 
