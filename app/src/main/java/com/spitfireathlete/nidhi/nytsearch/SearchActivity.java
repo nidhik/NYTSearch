@@ -57,10 +57,13 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), ArticleActivity.class); // getApp context bc inside anonymous class
+
                 Article a = articles.get(position);
                 i.putExtra("article", a);
 
+
                 startActivity(i);
+
             }
         });
 
