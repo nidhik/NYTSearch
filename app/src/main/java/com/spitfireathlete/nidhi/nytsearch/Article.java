@@ -6,13 +6,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by nidhikulkarni on 2/9/16.
  */
-public class Article {
+public class Article implements Serializable {
 
     private String webURL;
     private String headline;

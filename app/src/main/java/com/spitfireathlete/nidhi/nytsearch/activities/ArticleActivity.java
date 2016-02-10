@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import com.spitfireathlete.nidhi.nytsearch.Article;
 import com.spitfireathlete.nidhi.nytsearch.R;
 
 public class ArticleActivity extends AppCompatActivity {
@@ -16,10 +18,20 @@ public class ArticleActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        String url = getIntent().getStringExtra("url");
+        Article a = (Article) getIntent().getSerializableExtra("article");
 
         WebView wv = (WebView) findViewById(R.id.wvArticle);
-        wv.loadUrl(url);
+
+        wv.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+        });
+
+        wv.loadUrl(a.getWebURL());
+
     }
 
 

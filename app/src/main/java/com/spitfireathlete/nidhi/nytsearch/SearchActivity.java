@@ -58,7 +58,7 @@ public class SearchActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(getApplicationContext(), ArticleActivity.class); // getApp context bc inside anonymous class
                 Article a = articles.get(position);
-                i.putExtra("url", a.getWebURL());
+                i.putExtra("article", a);
 
                 startActivity(i);
             }
