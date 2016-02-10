@@ -1,5 +1,6 @@
 package com.spitfireathlete.nidhi.nytsearch;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -14,6 +16,7 @@ import android.widget.GridView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.spitfireathlete.nidhi.nytsearch.activities.ArticleActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,6 +52,17 @@ public class SearchActivity extends AppCompatActivity {
 
         adapter = new ArticleArrayAdapter(this, this.articles);
         gvResults.setAdapter(adapter);
+
+        gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getApplicationContext(), ArticleActivity.class); // getApp context bc inside anonymous class
+                Article a = articles.get(position);
+                i.putExtra("url", a.getWebURL());
+
+                startActivity(i);
+            }
+        });
 
     }
 
