@@ -38,6 +38,8 @@ public class SearchActivity extends AppCompatActivity {
     private static final String NYT_API_KEY = "14886966169991e54b1a4710491c9efc:4:74352748";
     private static final String NYT_SEARCH_URL = "http://api.nytimes.com/svc/search/v2/articlesearch.json";
 
+    private SettingsFragment settings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,8 +96,8 @@ public class SearchActivity extends AppCompatActivity {
 
     public void showSettings() {
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        SettingsFragment settings = new SettingsFragment();
-        settings.show(ft, "SETTINGS");
+        settings = new SettingsFragment();
+        settings.show(ft, "FILTERS");
 
     }
 
@@ -105,6 +107,15 @@ public class SearchActivity extends AppCompatActivity {
         String query = etQuery.getText().toString();
         searchFor(query);
 
+    }
+
+    public void handleApplyFiltersClicked (View view){
+        Log.i("INFO", "apply filters");
+    }
+
+    public void handleCancelFiltersClicked (View view){
+        Log.i("INFO", "apply filters");
+        settings.dismiss();
     }
 
     private void searchFor(String query) {
