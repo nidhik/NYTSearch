@@ -128,7 +128,7 @@ public class SearchActivity extends AppCompatActivity {
         params.add("q", query);
 
         if (settings != null) {
-            SettingsFragment.Filters filters = settings.getFilters();
+            SettingsFragment.Filters filters = settings.getCurrentFilters();
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
             if (!TextUtils.isEmpty(filters.newsDesk)) {
