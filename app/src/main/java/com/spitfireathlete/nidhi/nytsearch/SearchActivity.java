@@ -115,6 +115,7 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     public void handleCancelFiltersClicked (View view){
+        settings.clearFilters();
         settings.dismiss();
     }
 

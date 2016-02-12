@@ -91,6 +91,9 @@ public class SettingsFragment extends DialogFragment {
         currentFilters.beginDate.set(beginDatePicker.getYear(), beginDatePicker.getMonth(), beginDatePicker.getDayOfMonth());
     }
 
+    public void clearFilters() {
+        currentFilters = new Filters();
+    }
 
 
 
