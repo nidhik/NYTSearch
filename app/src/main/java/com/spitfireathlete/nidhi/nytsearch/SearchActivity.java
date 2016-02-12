@@ -153,7 +153,9 @@ public class SearchActivity extends AppCompatActivity {
                 JSONArray articlesJSON = null;
                 try {
                     articlesJSON = response.getJSONObject("response").getJSONArray("docs");
-                    adapter.addAll(Article.fromJSONArray(articlesJSON));
+                    articles.clear();
+                    articles.addAll(Article.fromJSONArray(articlesJSON));
+                    adapter.notifyDataSetChanged();
 
                     Log.d("DEBUG", articles.toString());
 
