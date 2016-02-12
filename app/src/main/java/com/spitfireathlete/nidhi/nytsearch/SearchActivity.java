@@ -132,7 +132,7 @@ public class SearchActivity extends AppCompatActivity {
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
 
             if (!TextUtils.isEmpty(filters.newsDesk)) {
-                params.add("fq", "news_desk:(\"" + filters.newsDesk + "\")");
+                params.add("fq", "news_desk:(" + filters.newsDesk + ")");
             }
 
             if (filters.beginDate != null) {
