@@ -22,6 +22,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -120,10 +121,24 @@ public class SearchActivity extends AppCompatActivity {
 
     private void searchFor(String query) {
         AsyncHttpClient httpClient = new AsyncHttpClient();
+
         RequestParams params = new RequestParams();
         params.add("api-key", NYT_API_KEY);
         params.add("page", "0");
         params.add("q", query);
+
+        if (settings != null) {
+            SettingsFragment.Filters filters = settings.getFilters();
+            SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+            params.add("fq", "news_desk:(\"" + filters.newsDesk + "\")");
+            params.add("begin_date", format.format(filters.beginDate.getTime()));
+            if (filters.sortNewestFirst) {
+                params.add("sort", "newest");
+            } else {
+                params.add("sort", "oldest");
+            }
+        }
+        
         httpClient.get(NYT_SEARCH_URL, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
