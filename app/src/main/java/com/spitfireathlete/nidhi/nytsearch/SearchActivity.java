@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,18 +105,16 @@ public class SearchActivity extends AppCompatActivity {
 
 
     public void handleSearchClicked(View view) {
-
         String query = etQuery.getText().toString();
         searchFor(query);
-
     }
 
     public void handleApplyFiltersClicked (View view){
-        Log.i("INFO", "apply filters");
+        settings.applyFilters();
+        settings.dismiss();
     }
 
     public void handleCancelFiltersClicked (View view){
-        Log.i("INFO", "apply filters");
         settings.dismiss();
     }
 
@@ -130,15 +129,22 @@ public class SearchActivity extends AppCompatActivity {
         if (settings != null) {
             SettingsFragment.Filters filters = settings.getFilters();
             SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-            params.add("fq", "news_desk:(\"" + filters.newsDesk + "\")");
-            params.add("begin_date", format.format(filters.beginDate.getTime()));
+
+            if (!TextUtils.isEmpty(filters.newsDesk)) {
+                params.add("fq", "news_desk:(\"" + filters.newsDesk + "\")");
+            }
+
+            if (filters.beginDate != null) {
+                params.add("begin_date", format.format(filters.beginDate.getTime()));
+            }
+
             if (filters.sortNewestFirst) {
                 params.add("sort", "newest");
             } else {
                 params.add("sort", "oldest");
             }
         }
-        
+
         httpClient.get(NYT_SEARCH_URL, params, new JsonHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

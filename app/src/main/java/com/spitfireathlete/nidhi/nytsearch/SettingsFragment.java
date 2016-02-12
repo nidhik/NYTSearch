@@ -23,6 +23,13 @@ public class SettingsFragment extends DialogFragment {
         public CharSequence newsDesk;
         public boolean sortNewestFirst;
         public Calendar beginDate;
+
+        public Filters() {
+            // defaults
+            sortNewestFirst = true;
+            newsDesk = "";
+            beginDate = null;
+        }
     }
 
     private Spinner newsDeskSpinner;
@@ -31,10 +38,13 @@ public class SettingsFragment extends DialogFragment {
 
     private DatePicker beginDatePicker;
 
+    private Filters currentFilters;
 
     public SettingsFragment () {
 
     }
+
+
 
 
     @Override
@@ -61,17 +71,24 @@ public class SettingsFragment extends DialogFragment {
 
         beginDatePicker = (DatePicker) view.findViewById(R.id.datePicker);
 
+
         getDialog().setTitle("Search Filters");
 
     }
 
     public Filters getFilters() {
-        Filters f = new Filters();
-        f.newsDesk = (CharSequence) newsDeskSpinner.getSelectedItem();
-        f.sortNewestFirst = sortOrder.getCheckedRadioButtonId() == R.id.rbNewest;
-        f.beginDate = new GregorianCalendar();
-        f.beginDate.set(beginDatePicker.getYear(), beginDatePicker.getMonth(), beginDatePicker.getDayOfMonth());
-        return f;
+        return currentFilters;
+    }
+
+    public void applyFilters() {
+        if (currentFilters == null) {
+            currentFilters = new Filters();
+        }
+
+        currentFilters.newsDesk = (CharSequence) newsDeskSpinner.getSelectedItem();
+        currentFilters.sortNewestFirst = sortOrder.getCheckedRadioButtonId() == R.id.rbNewest;
+        currentFilters.beginDate = new GregorianCalendar();
+        currentFilters.beginDate.set(beginDatePicker.getYear(), beginDatePicker.getMonth(), beginDatePicker.getDayOfMonth());
     }
 
 
