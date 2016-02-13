@@ -51,6 +51,18 @@ public class SearchActivity extends AppCompatActivity {
 
         etQuery = (EditText) findViewById(R.id.etQuery);
         gvResults = (GridView) findViewById(R.id.gvResults);
+
+
+        gvResults.setOnScrollListener(new EndlessScrollListener(16, 0) {
+            @Override
+            public boolean onLoadMore(int page, int totalItemsCount) {
+                String query = etQuery.getText().toString();
+                Log.i("INFO", "load page: " + page + " for query "+ query);
+                searchFor(query, page);
+                return true;
+            }
+        });
+
         btnSearch = (Button) findViewById(R.id.btnSearch);
         this.articles = new ArrayList<Article>();
 
@@ -106,7 +118,9 @@ public class SearchActivity extends AppCompatActivity {
 
     public void handleSearchClicked(View view) {
         String query = etQuery.getText().toString();
-        searchFor(query);
+        articles.clear();
+        adapter.notifyDataSetChanged();
+        searchFor(query, 0);
     }
 
     public void handleApplyFiltersClicked (View view){
@@ -119,12 +133,12 @@ public class SearchActivity extends AppCompatActivity {
         settings.dismiss();
     }
 
-    private void searchFor(String query) {
+    private void searchFor(String query, Integer page) {
         AsyncHttpClient httpClient = new AsyncHttpClient();
 
         RequestParams params = new RequestParams();
         params.add("api-key", NYT_API_KEY);
-        params.add("page", "0");
+        params.add("page", page.toString());
         params.add("q", query);
 
         if (settings != null) {
@@ -153,7 +167,6 @@ public class SearchActivity extends AppCompatActivity {
                 JSONArray articlesJSON = null;
                 try {
                     articlesJSON = response.getJSONObject("response").getJSONArray("docs");
-                    articles.clear();
                     articles.addAll(Article.fromJSONArray(articlesJSON));
                     adapter.notifyDataSetChanged();
 
