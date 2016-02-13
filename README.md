@@ -23,5 +23,5 @@ Figuring out a UI that would be compact and still let the user select multiple N
 
 Walkthrough of all user stories:
 
-![Video Walkthrough]()
+![Video Walkthrough](https://github.com/nidhik/NYTSearch/blob/master/codepath-assignment-week2-android.gif)
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
