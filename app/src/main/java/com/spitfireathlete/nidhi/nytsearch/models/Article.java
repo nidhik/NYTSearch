@@ -1,4 +1,4 @@
-package com.spitfireathlete.nidhi.nytsearch;
+package com.spitfireathlete.nidhi.nytsearch.models;
 
 import android.util.Log;
 

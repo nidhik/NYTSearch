@@ -6,7 +6,7 @@ import android.support.v7.widget.Toolbar;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.spitfireathlete.nidhi.nytsearch.Article;
+import com.spitfireathlete.nidhi.nytsearch.models.Article;
 import com.spitfireathlete.nidhi.nytsearch.R;
 
 public class ArticleActivity extends AppCompatActivity {

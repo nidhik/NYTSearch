@@ -1,4 +1,4 @@
-package com.spitfireathlete.nidhi.nytsearch;
+package com.spitfireathlete.nidhi.nytsearch.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +17,10 @@ import android.widget.GridView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
-import com.spitfireathlete.nidhi.nytsearch.activities.ArticleActivity;
+import com.spitfireathlete.nidhi.nytsearch.models.Article;
+import com.spitfireathlete.nidhi.nytsearch.adapters.ArticleArrayAdapter;
+import com.spitfireathlete.nidhi.nytsearch.adapters.EndlessScrollListener;
+import com.spitfireathlete.nidhi.nytsearch.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -1,4 +1,4 @@
-package com.spitfireathlete.nidhi.nytsearch;
+package com.spitfireathlete.nidhi.nytsearch.adapters;
 
 import android.widget.AbsListView;
 import android.widget.GridView;

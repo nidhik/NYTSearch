@@ -1,4 +1,4 @@
-package com.spitfireathlete.nidhi.nytsearch;
+package com.spitfireathlete.nidhi.nytsearch.adapters;
 
 import android.content.Context;
 import android.text.TextUtils;
@@ -9,6 +9,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.spitfireathlete.nidhi.nytsearch.R;
+import com.spitfireathlete.nidhi.nytsearch.models.Article;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;

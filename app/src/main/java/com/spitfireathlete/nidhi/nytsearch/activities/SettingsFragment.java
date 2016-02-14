@@ -1,4 +1,4 @@
-package com.spitfireathlete.nidhi.nytsearch;
+package com.spitfireathlete.nidhi.nytsearch.activities;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +14,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.DatePicker;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.spitfireathlete.nidhi.nytsearch.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
